@@ -1,7 +1,7 @@
 name: Ambiente Desenvolvimento
 
 on:  
-  push:
+  push: 
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Compilação
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
 
     steps:
     - name: Git Checkout
@@ -76,7 +76,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: registry.heroku.com/lab-devops-project/web:latest
+        tags: registry.heroku.com/TCC_devops/web:latest
 
   deploy:
     name: Publica ambiente Desenvolvimento
@@ -91,7 +91,7 @@ jobs:
         username: ${{ secrets.HEROKU_EMAIL }}
         password: ${{ secrets.HEROKU_API_KEY }}
     - name: Publicação
-      run: heroku container:release -a lab-devops-project web 
+      run: heroku container:release -a TCC_devop web
       env:
-        HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        username: ${{ secrets.HEROKU_EMAIL }}
+        password: ${{ secrets.HEROKU_API_KEY }}
